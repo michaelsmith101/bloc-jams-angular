@@ -49,6 +49,7 @@
       };
 
       SongPlayer.currentSong = null;
+      SongPlayer.currentTime = null;
 
         SongPlayer.play = function(song) {
           song = song || SongPlayer.currentSong;
@@ -91,6 +92,12 @@
           var song = SongPlayer.currentAlbum.songs[currentSongIndex];
           setSong(song);
           playSong(song);
+        }
+      };
+
+      SongPlayer.setCurrentTime = function(time) {
+        if (currentBuzzObject) {
+          currentBuzzObject.setTime(time);
         }
       };
 
