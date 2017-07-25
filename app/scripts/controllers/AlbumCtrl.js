@@ -1,8 +1,8 @@
 (function() {
-  
-  this.albumData = albumPicasso;
 
   angular
     .module('blocJams')
-    .controller('AlbumCtrl', AlbumCtrl);
+    .controller('AlbumCtrl', ["$scope", function($scope){
+      $scope.albumData = albumPicasso
+    }]);
 })();
