@@ -2,7 +2,7 @@
   function SongPlayer(Fixtures) {
       var SongPlayer = {};
 
-      var currentAlbum = Fixtures.getAlbum();
+      SongPlayer.currentAlbum = Fixtures.getAlbum();
 
       var currentBuzzObject = null;
 
@@ -39,6 +39,11 @@
         song.playing = true;
       }
 
+      var stopSong = function(song){
+        currentBuzzObject.stop();
+        SongPlayer.currentSong.playing = null;
+      }
+
       var getSongIndex = function(song) {
         return currentAlbum.songs.indexOf(song);
       };
@@ -68,10 +73,22 @@
         currentSongIndex--;
 
         if (currentSongIndex < 0) {
-         currentBuzzObject.stop();
-         SongPlayer.currentSong.playing = null;
+          stopSong(song);
         } else {
-          var song = currentAlbum.songs[currentSongIndex];
+          var song = SongPlayer.currentAlbum.songs[currentSongIndex];
+          setSong(song);
+          playSong(song);
+        }
+      };
+
+      SongPlayer.next = function() {
+        var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+        currentSongIndex++;
+
+        if (currentSongIndex < 0) {
+          stopSong(song);
+        } else {
+          var song = SongPlayer.currentAlbum.songs[currentSongIndex];
           setSong(song);
           playSong(song);
         }
