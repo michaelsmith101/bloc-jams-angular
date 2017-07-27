@@ -51,7 +51,7 @@
       }
 
       var getSongIndex = function(song) {
-        return currentAlbum.songs.indexOf(song);
+        return SongPlayer.currentAlbum.songs.indexOf(song);
       };
 
       SongPlayer.currentSong = null;
